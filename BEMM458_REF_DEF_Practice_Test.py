@@ -63,7 +63,14 @@ location_list = [
 ]
 
 print(location_list)
-[(271, 280), (458, 464)] # OUTPUT: [(271, 280), (458, 464)]
+
+# OUTPUT: [(271, 280), (458, 464)]
+# Summary: In this question, I first took the second and second-to-last digits from my SID and used them as keys to pick two keywords from 
+# the given dictionary. Then I wrote a list comprehension that loops through the customer review text character by character, checking if 
+# each position starts with one of my keywords (case-insensitive). If it matches, I store a tuple containing the start index and the 
+# position right after the keyword (end index). This means each tuple shows exactly where the keyword appears in the review. This method 
+# works without having to split the sentence or manually search because it just checks all possible positions in the text directly.
+
 
 ########################################################################################################################################################
 # Question 2 - Metrics Function for Business Intelligence
@@ -110,6 +117,17 @@ print("Churn Rate (%):", churn_rate(last_digit, 100))
 print("Customer Lifetime Value:", customer_lifetime_value(20, first_digit, last_digit))
 print("Cost Per Acquisition:", cost_per_acquisition(90, last_digit))
 
+# OUTPUT:
+# Gross Profit Margin (%): 93.0
+# Churn Rate (%): 7.0
+# Customer Lifetime Value: 980
+# Cost Per Acquisition: 12.857142857142858
+# Summary: Here I created four different functions to calculate important business metrics using the formulas given in the question. 
+# I used my first and last SID digits as input values for the calculations. For example, the Gross Profit Margin function subtracts the cost 
+# of goods sold from total revenue, divides by revenue, and then multiplies by 100 to get a percentage. The Churn Rate function finds the 
+# percentage of customers lost compared to the starting number. The Customer Lifetime Value multiplies the average purchase value, how 
+# often they buy, and how long they remain a customer. Finally, the Cost Per Acquisition divides the marketing cost by how many customers 
+# were acquired. This made the code reusable for any set of inputs, not just my SID-based numbers.
 
 ########################################################################################################################################################
 # Question 3 - Linear Regression for Pricing Strategy
@@ -152,6 +170,15 @@ best_price = prices[demand.argmax()][0]
 
 print("Best price:", best_price)
 print("Predicted demand at £25:", pred_demand_25)
+
+# OUTPUT:
+# Best price: 8
+# Predicted demand at £25: 52.95454545454541
+# Summary: For this question I used the scikit-learn LinearRegression model to see how the demand for cupcakes changes with price. 
+# I reshaped the prices into a column format because that’s how sklearn expects the input. After fitting the model with prices and their 
+# corresponding demand, I asked it to predict the demand if the price was set to £25. The model gave me around 52.95 units. I also found 
+# the price that gives the highest demand by checking the position of the maximum demand in the data — in this simple case, the lowest price 
+# (£8) gave the highest demand. The model shows a downward trend between price and demand, which makes sense for most products.
 
 ########################################################################################################################################################
 # Question 4 - Debugging and Chart Creation
