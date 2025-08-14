@@ -1,10 +1,10 @@
 
 #######################################################################################################################################################
 # 
-# Name:
-# SID:
-# Exam Date:
-# Module:
+# Name:Riteshkumar Mahadevrao ingalepatil
+# SID:740098507
+# Exam Date:14/08/2025
+# Module:BEMM458
 # Github link for this assignment:  
 #
 ########################################################################################################################################################
@@ -47,7 +47,23 @@ feedback_keywords = {
 }
 
 # Write your code here to populate location_list
-location_list = []
+# Example SID: 740098507  →  second digit = 4, second-to-last digit = 7
+second_digit = 4  # Replace with own digits
+second_last_digit = 7 # Replace with  own digits
+
+# Get the keywords for these positions
+keywords_to_find = [feedback_keywords[second_digit], feedback_keywords[second_last_digit]]
+
+# Make list of tuples with (start, end) positions where keyword occurs
+location_list = [
+    (i, i + len(word))
+    for word in keywords_to_find
+    for i in range(len(customer_review))
+    if customer_review.lower().startswith(word.lower(), i)
+]
+
+print(location_list)
+[(271, 280), (458, 464)] # OUTPUT: [(271, 280), (458, 464)]
 
 ########################################################################################################################################################
 # Question 2 - Metrics Function for Business Intelligence
@@ -67,6 +83,33 @@ location_list = []
 # Write a function for CPA = Marketing Cost / Number of Acquisitions
 
 # Test your functions here
+# Question 2 - Metrics Function for Business Intelligence
+
+first_digit = 7  # First SID digit
+last_digit = 7   # Last SID digit
+
+# Gross Profit Margin (%) = (Revenue - COGS) / Revenue * 100
+def gross_profit_margin(revenue, cogs):
+    return (revenue - cogs) / revenue * 100
+
+# Churn Rate (%) = (Customers Lost / Customers at Start) * 100
+def churn_rate(customers_lost, customers_start):
+    return (customers_lost / customers_start) * 100
+
+# Customer Lifetime Value = Avg Purchase Value × Purchase Frequency × Customer Lifespan
+def customer_lifetime_value(avg_purchase, frequency, lifespan):
+    return avg_purchase * frequency * lifespan
+
+# CPA = Marketing Cost / Number of Acquisitions
+def cost_per_acquisition(marketing_cost, acquisitions):
+    return marketing_cost / acquisitions
+
+# Test with simple values based on SID digits
+print("Gross Profit Margin (%):", gross_profit_margin(100, first_digit))
+print("Churn Rate (%):", churn_rate(last_digit, 100))
+print("Customer Lifetime Value:", customer_lifetime_value(20, first_digit, last_digit))
+print("Cost Per Acquisition:", cost_per_acquisition(90, last_digit))
+
 
 ########################################################################################################################################################
 # Question 3 - Linear Regression for Pricing Strategy
@@ -91,6 +134,24 @@ Price (£)    Demand (Units)
 """
 
 # Write your linear regression solution here
+import numpy as np
+from sklearn.linear_model import LinearRegression
+# Price and demand data
+prices = np.array([8,10,12,14,16,18,20,22,24,26]).reshape(-1, 1)
+demand = np.array([200,180,160,140,125,110,90,75,65,50])
+
+# Fit regression model
+model = LinearRegression()
+model.fit(prices, demand)
+
+# Predict demand for £25
+pred_demand_25 = model.predict([[25]])[0]
+
+# Best price for max demand (linear model says lowest price is best)
+best_price = prices[demand.argmax()][0]
+
+print("Best price:", best_price)
+print("Predicted demand at £25:", pred_demand_25)
 
 ########################################################################################################################################################
 # Question 4 - Debugging and Chart Creation
@@ -101,7 +162,7 @@ import random
 import matplotlib.pyplot as plt
 
 # Accept student ID as input
-sid_input = input("Enter your SID: ")
+sid_input = input("740098507 ")
 sid_value = int(sid_input)
 
 # Generate 100 random values
@@ -117,4 +178,5 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-########################################################################################################################################################
+Best price: 8
+Predicted demand at £25: 52.95454545454541 output: Scatter plot appears with 100 points in green 'x'.
